@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cartelera de Peliculas</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
+crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="peliculas.js"></script>
+
+<link rel="stylesheet" href="style.css ">
+</head>
+<body>  
+    <header class="banner">
+        <div style="width: 10%;"><img id="logo" src="images/logo.png" /></div>
+        <div class="divVinculo">            
+                    <a href="index.html">Inicio</a>
+                    <a  href="registro.html">Registro</a>             
+        </div>        
+    </header> 
+    <section class="slide">
+        <article><button id="prev" class="btn btn-warning" onclick="obtenerA()" style="margin-top: 160px;"><img id="atras" src="images/atras.png"></button></article>    
+        <article>      
+            <ul class="slider">
+                <li><img id="miSlide" src="images/image1.jpg"></li>           
+            </ul> 
+        </article> 
+        <article><button id="next" class="btn btn-warning" onclick="obtenerS()" style="margin-top: 160px;"><img id="adelante" src="images/adelante.png"></button></article>     
+    </section> 
+    
+    <div id="description" class="descriptionSlide">
+        <ul id="minis" style="display: inline-flex; margin-top: 5px;">          
+            <script>
+                 lista=document.getElementById('minis');                
+                for (i = 0; i < localStorage.length; i++) {
+                    contenido=localStorage.getItem(localStorage.key(i));                   
+                    item=document.createElement('li');
+                    div=document.createElement('div');
+                    p=document.createElement('p');
+                    var imagen = document.createElement('img');  
+                    imagen.setAttribute('src',localStorage.getItem(localStorage.key(i)))
+                    imagen.setAttribute('id',"p"+i);
+                    imagen.style.height = '160px';
+                    imagen.style.width = '90px';
+                    imagen.style.margin = '5px';                                                         
+                    lista.appendChild(div).appendChild(item).appendChild(imagen);               
+                    
+                    
+                }
+            </script>
+        </ul>   
+    </div>
+    <script>
+        $(document).ready(function() {  
+            $("#logo").click(function(event) {
+                var logo = document.getElementsById('logo');
+                logo.onclick=null;
+            });
+            $("#adelante").click(function(event) {
+                var adelante = document.getElementsById('adelante');
+                adelante.onclick=null;
+            });
+            $("#atras").click(function(event) {
+                var atras = document.getElementsById('atras');
+                atras.onclick=null;
+            });            
+            $("img").click(function(event) {                         
+                src=$(this).attr('src');
+                img=document.getElementById('miSlide');
+                img.setAttribute('src',src);
+            });
+        });
+    </script>  
+</body>
+</html>
